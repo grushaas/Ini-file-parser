@@ -1,11 +1,9 @@
-#include "IniParser.h"
-#include <string>
 #include <iostream>
+#include "Parser.h"
 
 int main()
 {
-    std::string sectionAndValue = "Section1.var1";
-    IniParser parser("../file.ini");
-    parser.GetValue<double>("[Section1]", "var1");
-    //parser.GetValue<std::string>("Section1", "var2");
+	Parser parser("File.ini");
+
+	parser.GetValue("Section1", "var1");
 }
