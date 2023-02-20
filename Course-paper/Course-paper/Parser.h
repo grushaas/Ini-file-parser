@@ -2,6 +2,7 @@
 #include <string>
 #include <map>
 #include <iostream>
+#include <algorithm>
 #include <vector>
 #include <fstream>
 
@@ -14,6 +15,7 @@ private:
 	vector<string> sections;
 	vector<string> values;
 	multimap<string, string> nameAndValue;
+	multimap<string, pair<string, string>> sectionWithNameAndValue;
 	ifstream iniFile;
 
 	void Tokenize();
@@ -22,8 +24,8 @@ private:
 public:
 	Parser(string fileName);
 
-	//template<class T>
-	int GetValue(string section, string var)
+	template<class T>
+	void GetValue(string section, string var)
 	{
 		OnTheShelves();
 		Tokenize();
@@ -34,6 +36,9 @@ public:
 			cout << "Файл не смог открыться" << std::endl;
 		}
 
-		return 0;
+		for (auto& el : sectionWithNameAndValue)
+		{
+			cout << el.first << " => " << el.second << endl;
+		}
 	}
 };

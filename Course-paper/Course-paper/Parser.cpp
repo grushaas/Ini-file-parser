@@ -41,11 +41,12 @@ void Parser::OnTheShelves()
 
 void Parser::Tokenize()
 {
-	int vSize = values.size();
+	int cValues = 0;
+	int cSections = 0;
 
-	for (int i = 0; i < vSize; ++i)
+	while (cValues < values.size() && cSections < sections.size())
 	{
-		stringstream ss(values[i]);
+		stringstream ss(values[cValues]);
 		string line;
 		string name;
 		string value;
@@ -77,11 +78,17 @@ void Parser::Tokenize()
 					}
 				}
 			}
+		}
+		if (!(name.empty() || name == " " && value.empty() || value == " "))
+		{
+			sectionWithNameAndValue.insert(make_pair(sections[cSections], make_pair(name, value)));
 
-			if (!(name.empty() || name == " " && value.empty() || value == " "))
-			{
-				nameAndValue.insert(make_pair(name, value));
-			}
+			cValues += 1;
+		}
+		else
+		{
+			cSections += 1;
+			cValues += 1;
 		}
 	}
 }

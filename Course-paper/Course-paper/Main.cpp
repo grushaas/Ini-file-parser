@@ -5,5 +5,5 @@ int main()
 {
 	Parser parser("File.ini");
 
-	parser.GetValue("Section1", "var1");
+	parser.GetValue<int>("Section1", "var1");
 }
