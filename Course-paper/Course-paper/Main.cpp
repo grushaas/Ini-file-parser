@@ -1,9 +1,13 @@
 #include <iostream>
 #include "Parser.h"
 
+using namespace std;
+
 int main()
 {
 	Parser parser("File.ini");
 
-	parser.GetValue<int>("Section1", "var1");
+	auto result = parser.GetValue<string>("Section2", "var2");
+
+	cout << result << endl;
 }

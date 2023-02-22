@@ -10,6 +10,12 @@ Parser::Parser(string fileName) : fileName(fileName)
 	
 }
 
+bool Parser::IsNumber(const string& str)
+{
+	return !str.empty() && find_if(str.begin(),
+		str.end(), [](unsigned char c) { return !isdigit(c); }) == str.end();
+}
+
 void Parser::OnTheShelves()
 {
 	iniFile.open(fileName);
